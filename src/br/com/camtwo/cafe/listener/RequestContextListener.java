@@ -12,12 +12,13 @@ import com.db4o.ObjectServer;
 public class RequestContextListener implements ServletRequestListener {
    
     public void requestDestroyed(ServletRequestEvent event) {
+        RequestContext.setServer(null);
     }
 
 	
     public void requestInitialized(ServletRequestEvent event) {
         ObjectServer server = (ObjectServer) event.getServletContext().getAttribute(Database.DATABASE_SERVER_ATTR_NAME);
-        RequestContext.setServer(server);;
+        RequestContext.setServer(server);
     }
 	
 }

@@ -23,13 +23,13 @@ public class ManutencaoFormController {
 		pessoa.addDias(dias);
 		service.inserirOuAlterar(pessoa);
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("teste", "testt"));
+				new FacesMessage("Registro salvo com sucesso", ""));
 	}
 
 	public void excluir() {
 		service.remover(pessoa);
 		FacesContext.getCurrentInstance().addMessage(null,
-				new FacesMessage("teste", "testt"));
+				new FacesMessage("Registro excluído com sucesso", "testt"));
 		novo();
 	}
 
