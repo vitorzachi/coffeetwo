@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title">Pessoas cadastradas</ui:define>
+		
+		<ui:define name="content">
+			<div class="section">
+				<div class="col-md-12 column">
+					<div class="col-md-10">
+						<h:dataTable value="#{manutencaoListaController.pessoas}" var="pessoa" styleClass="table table-hover">
+							<h:column><f:facet name="header">Nome</f:facet><h:outputText value="#{pessoa.nome}" /></h:column>
+							<h:column><f:facet name="header">Email</f:facet><h:outputText value="#{pessoa.email}" /></h:column>
+							<h:column><f:facet name="header">Dias</f:facet><h:outputText value="#{pessoa.diasToString}" /></h:column>
+							<h:column>
+								<f:facet name="header">Opções</f:facet>
+								<h:link includeViewParams="true" outcome="manutencao" value="Editar">
+									<f:param name="id" value="#{pessoa.emailNullSafe}" />
+								</h:link>
+							</h:column>
+						</h:dataTable>
+					</div>
+					<div class="col-md-2">
+						<a jsf:outcome="manutencao" class="btn btn-success">Cadastrar nova</a>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>	
+</html>

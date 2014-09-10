@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title">Cadastro de pessoas</ui:define>
+		
+		<ui:define name="content">
+			<h:messages id="mensagens" styleClass="alert" 
+			infoClass="alert-info" errorClass="alert-danger" fatalStyle="alert-danger"/>
+		
+			<div class="section">
+				<div class="col-md-10 column">
+					<h:form styleClass="form-horizontal">
+						<div class="row form-group">
+							<label for="nome" class=" control-label col-xs-2" >Nome: </label>
+								<input jsf:id="nome" jsf:value="#{manutencaoFormController.pessoa.nome}" 
+									jsf:required="true" jsf:label="Nome" 
+									class=" form-control col-xs-6" maxlength="60" type="text" >
+									<f:validateLength maximum="60" minimum="10" />
+								</input>
+						</div>
+						
+						<div class="row form-group">
+							<label for="email" class="control-label col-xs-2">Email: </label>
+							<input jsf:id="email" jsf:value="#{manutencaoFormController.pessoa.email}" 
+								jsf:required="true" jsf:label="Email" 
+								class="form-control col-xs-6" maxlength="60" type="text" >
+								<f:validateLength maximum="60" minimum="10" />
+							</input>
+						</div>
+						
+						<div class="row form-group">
+							<label for="dias" class="control-label col-xs-2">Na empresa: </label>
+							<h:selectManyCheckbox value="#{manutencaoFormController.dias}" required="true" label="Dias na empresa">
+								<f:selectItems value="#{listController.dias}" var="item" itemLabel="#{item.descricao}" />
+							</h:selectManyCheckbox>
+						</div>
+						
+						<div class="row ctrls">
+							<div class="col-md-offset-2 col-md-6 btn-group">
+								<h:commandButton action="#{manutencaoFormController.salvar}" value="Salvar"
+									styleClass="btn btn-primary">
+									<f:ajax execute="@this @form" render="mensagens" />
+								</h:commandButton>
+								
+								<h:commandButton action="#{manutencaoFormController.excluir}" value="Remover"
+									styleClass="btn btn-danger" onclick="return confirm('Deseja realmente excluir?')">
+									<f:ajax execute="@this @form" render="mensagens" />
+								</h:commandButton>
+								
+								<h:commandButton action="#{manutencaoFormController.novo}" value="Novo"
+									styleClass="btn btn-default">
+									<f:ajax execute="@this" render="@form mensagens" />
+								</h:commandButton>
+							</div>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>	
+</html>

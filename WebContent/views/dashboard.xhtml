@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title">Dashboard</ui:define>
+		<ui:define name="content">
+			
+			<div style="text-align: center" jsf:rendered="#{not empty dashboardController.daVez}">
+				<h1><h:outputText value="#{dashboardController.daVez.pessoa.nome}" /></h1>
+				<p class="lead">É último escolhido de hoje para o café!</p>
+			</div>
+			
+			<div class="section">
+				<div class="col-md-12 column">
+					<h:dataTable value="#{dashboardController.ultimosSorteados}" var="sorteado" 
+						styleClass="table table-hover table-bordered" id="sorteados">
+						<f:facet name="header">
+							<h:outputText value="Sorteados nos últimos 7 dias" />
+						</f:facet>
+						<h:column>
+							<f:facet name="header">Nome</f:facet>
+							<h:outputText value="#{sorteado.pessoa.nome}" />
+						</h:column>
+						<h:column>
+							<f:facet name="header">Data/hora sorteio</f:facet>
+							<h:outputText value="#{sorteado.dataToString}" />
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>	
+</html>

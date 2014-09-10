@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+<h:body>
+	<ui:composition template="/templates/template.xhtml">
+		<ui:define name="title">Sorteio</ui:define>
+		<ui:define name="content">
+			<div jsf:id="sorteado">
+				<div style="text-align: center" jsf:rendered="#{not empty sorteioController.sorteado}">
+					<h1><h:outputText value="#{sorteioController.sorteado.pessoa.nome}" /></h1>
+					<p class="lead">É o escolhido da vez para o café!</p>
+				</div>
+			</div>
+			
+			<div class="section">
+				<div class="col-md-12 column">
+					<div class="col-md-7" jsf:id="pessoas">
+						<h:dataTable value="#{sorteioController.todasPessoas}" var="pessoa" 
+							styleClass="table table-hover table-bordered" >
+							<f:facet name="header">
+								<h:outputText value="Pessoas para sorteio" />
+							</f:facet>
+							<h:column>
+								<f:facet name="header">Nome</f:facet>
+								<h:outputText value="#{pessoa.nome}" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Presente</f:facet>
+								<span jsf:rendered="#{sorteioController.isPresente(pessoa)}"><i class="icon-ok"></i></span>
+								<span jsf:rendered="#{not sorteioController.isPresente(pessoa)}"><small>Ausente hoje</small></span>
+							</h:column>
+							<h:column>
+								<f:facet name="header">Não sorteado</f:facet>
+								<span jsf:rendered="#{sorteioController.isSorteada(pessoa)}"><small>Sorteado nesta semana</small></span>
+								<span jsf:rendered="#{not sorteioController.isSorteada(pessoa)}"><i class="icon-ok"></i></span>
+							</h:column>
+						</h:dataTable>
+					</div>
+					<div class="col-md-5">
+						<h:form>
+							<h:commandButton action="#{sorteioController.sorteiaStrict}" value="Sortear sem bulling"
+								styleClass="btn btn-success" rendered="#{sorteioController.isSorteiaStrict()}">
+								<f:ajax execute="@this" render="sorteados pessoas sorteado" />
+							</h:commandButton>
+							
+							<h:commandButton action="#{sorteioController.sorteiaAll}" value="Sortear com bulling"
+								styleClass="btn btn-danger" >
+								<f:ajax execute="@this" render="sorteados pessoas sorteado" />
+							</h:commandButton>
+						</h:form>
+						<hr />
+						<div jsf:id="sorteados" >
+							<h:dataTable value="#{sorteioController.sorteadosHoje}" var="sorteado" 
+								styleClass="table table-hover table-bordered" 
+								rendered="#{not empty sorteioController.sorteadosHoje}">
+								<f:facet name="header">
+									<h:outputText value="Sorteados hoje" />
+								</f:facet>
+								<h:column>
+									<f:facet name="header">Nome</f:facet>
+									<h:outputText value="#{sorteado.pessoa.nome}" />
+								</h:column>
+								<h:column>
+									<f:facet name="header">Data/hora sorteio</f:facet>
+									<h:outputText value="#{sorteado.dataToString}" />
+								</h:column>
+							</h:dataTable>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>	
+</html>

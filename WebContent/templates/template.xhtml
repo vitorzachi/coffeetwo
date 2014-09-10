@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt" 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<head jsf:id="pagehead">
+		<title>Aplicação de sorteio de café</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description" content="App de sorteio de café da Camtwo"/>
+		<meta name="author" content="Camtwo Sistemas Ltda"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
+		<h:outputStylesheet library="css/bootstrap" name="bootstrap.css" />
+		<h:outputStylesheet library="css/bootstrap" name="font-awesome.min.css" />
+		<h:outputStylesheet library="css/lib" 		name="fonts.css" />
+		<h:outputStylesheet library="css/compiled" 		name="layout.css" />
+		<h:outputStylesheet library="css/compiled" 		name="elements.css" />
+		<h:outputStylesheet library="css" 			name="cafe.css" />
+		
+		<h:outputScript library="js" name="jquery.js" />
+		<h:outputScript library="js" name="bootstrap.min.js" />
+		<h:outputScript library="js" name="jquery-ui.js" />
+		<h:outputScript library="js" name="theme.js" />
+	
+		<!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+	</head>
+<h:body>
+	<!-- navbar -->
+		<ui:include src="navbar.xhtml" />
+	<!-- end navbar -->
+
+	<!-- sidebar -->
+		<ui:include src="sidebar.xhtml" />
+	<!-- end sidebar -->
+
+
+	<!-- main container -->
+	<div class="content">
+		<div id="pad-wrapper">
+			<div class="page-header">
+				<div class="col-md-12">
+					<h3>
+						<ui:insert name="title">
+							Acesso Negado
+						</ui:insert>
+					</h3>
+				</div>
+			</div>
+			<ui:insert name="content">
+				Acesso Negado!
+			</ui:insert>
+		</div>
+	</div>
+
+</h:body>
+</html>
