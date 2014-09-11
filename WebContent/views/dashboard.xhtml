@@ -6,9 +6,13 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
 	<ui:composition template="/templates/template.xhtml">
+		<f:metadata>
+		    <f:event listener="#{menuController.changeMenu}" type="preRenderView" />
+		    <f:attribute name="menu" value="dashboard" />
+		</f:metadata>
+		
 		<ui:define name="title">Dashboard</ui:define>
 		<ui:define name="content">
-			
 			<div style="text-align: center" jsf:rendered="#{not empty dashboardController.daVez}">
 				<h1><h:outputText value="#{dashboardController.daVez.pessoa.nome}" /></h1>
 				<p class="lead">É último escolhido de hoje para o café!</p>

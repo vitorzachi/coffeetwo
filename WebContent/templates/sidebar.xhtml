@@ -1,8 +1,8 @@
 <html xmlns:jsf="http://xmlns.jcp.org/jsf">
 	<div id="sidebar-nav">
 		<ul id="dashboard-menu">
-			<li class="active">
-				<div class="pointer">
+			<li id="dashboard">
+				<div class="pointer" jsf:rendered="#{menuController.isSelected('dashboard')}">
 					<div class="arrow"></div>
 					<div class="arrow_border"></div>
 				</div>
@@ -11,27 +11,30 @@
 					<span> Dashboard </span>
 				</a>
 			</li>
-			<li>
-				<div class="pointer">
+			<li id="sortear">
+				<div class="pointer" jsf:rendered="#{menuController.isSelected('sortear')}">
 					<div class="arrow"></div>
 					<div class="arrow_border"></div>
 				</div>
-				<a jsf:outcome="/views/sortear.xhtml">
+				<a jsf:outcome="sortear">
 					<i class="icon-random"></i>
 					<span> Sortear </span>
 				</a>
 			</li>
 			
-			<li>
-				<div class="pointer">
+			<li id="cadastros">
+				<div class="pointer" jsf:rendered="#{menuController.isSelected('cadastros')}">
 					<div class="arrow"></div>
 					<div class="arrow_border"></div>
 				</div>
-				<a jsf:outcome="/views/pessoas.xhtml">
+				<a jsf:outcome="pessoas">
 					<i class="icon-edit"></i>
-					<span> Manutenção </span>
+					<span> Cadastros </span>
 				</a>
 			</li>
 		</ul>
 	</div>
+	<script type="text/javascript">
+		$('##{menuController.menu}').addClass('active');
+	</script>
 </html>

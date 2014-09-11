@@ -6,6 +6,10 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
 	<ui:composition template="/templates/template.xhtml">
+		<f:metadata>
+		    <f:event listener="#{menuController.changeMenu}" type="preRenderView" />
+		    <f:attribute name="menu" value="sortear" />
+		</f:metadata>
 		<ui:define name="title">Sorteio</ui:define>
 		<ui:define name="content">
 			<div jsf:id="sorteado">

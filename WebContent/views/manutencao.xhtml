@@ -6,6 +6,11 @@
 	xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
 	<ui:composition template="/templates/template.xhtml">
+		<f:metadata>
+		    <f:event listener="#{menuController.changeMenu}" type="preRenderView" />
+		    <f:attribute name="menu" value="cadastros" />
+		</f:metadata>
+		
 		<ui:define name="title">Cadastro de pessoas</ui:define>
 		
 		<ui:define name="content">
